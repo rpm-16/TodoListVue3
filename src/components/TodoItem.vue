@@ -1,18 +1,18 @@
 <template>
-    <li v-bind:class="{ done: todo.completed }">
-    <span>
-        <input type="checkbox" v-on:change="todo.completed = !todo.completed">
-        <strong>{{ todo.id }}</strong>
-        {{ todo.title }}
+    <li>
+    <span v-bind:class="{ done: todoelement.completed }">
+        <input type="checkbox" v-on:change="todoelement.completed = !todoelement.completed">
+        <strong>{{ todoelement.id }}</strong>
+        {{ todoelement.title }}
     </span>
-    <button class="btn1" v-on:click="$emit('removetodo',todo.id)">&times;</button>
+    <button class="btn1" v-on:click="$emit('removetodo',todoelement.id)">&times;</button>
 </li>
 </template>
 
 <script>
 export default {
     props: {
-        todo: {
+        todoelement: {
             type: Object,
             required: true
         },
@@ -32,9 +32,13 @@ li {
     background: red;
     color: white;
     font-weight: bold;
+    border: 1px solid #3f3f3f;
 }
 .done {
     text-decoration: line-through;
     color: #ccc;
+    }
+    input {
+        margin-right: 1rem;
     }
 </style>

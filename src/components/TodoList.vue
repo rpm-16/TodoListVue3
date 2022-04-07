@@ -1,11 +1,9 @@
 <template>
     <div>
         <ul>
-            <TodoItem 
-                v-for="todo in todos"
-                v-bind:todo="todo"
-                v-on:removetodo="removetodo"
-            />
+            <TodoItem v-for="todoline in todos"
+                v-bind:todoelement="todoline"
+                v-on:removetodo="removeTodo" />
         </ul>
     </div>
 </template>
@@ -14,13 +12,13 @@
 
 import TodoItem from '@/components/TodoItem'
 export default {
-    props: ['todos'], 
+    props: ['todos'], //include array "todos" from app.vue
     components: {
-        TodoItem
+        TodoItem: TodoItem
     },
     methods: {
-        removetodo(id){
-            alert(id);
+        removeTodo(id){
+            this.$emit('removetodo', id)
             }
     }
 }
